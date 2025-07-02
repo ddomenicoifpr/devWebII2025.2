@@ -1,5 +1,5 @@
-<p align="right">
-  <img src="logo-IFPR.png" alt="Instituto Federal do Paraná" height="80">
+<p align="center">
+  <img src="logo-IFPR.png" alt="Instituto Federal do Paraná" height="100">
 </p>
 
 # 📚 Desenvolvimento Web II — 2025/2
