@@ -1,0 +1,25 @@
+<p align="right">
+  <img src="logo-IFPR.png" alt="Instituto Federal do Paraná" height="80">
+</p>
+
+# 📚 Desenvolvimento Web II — 2025/2
+
+> Repositório para disponibilização de materiais da disciplina de **Desenvolvimento Web II**, ofertada no **Instituto Federal do Paraná — Campus Foz do Iguaçu**.
+
+---
+
+## 🎓 **Informações da Disciplina**
+
+| 🏫 **Instituição** | Instituto Federal do Paraná — IFPR |
+| ------------------- | ---------------------------------- |
+| 🎓 **Curso** | Tecnologia em Análise e Desenvolvimento de Sistemas (TADS) |
+| 👨‍🏫 **Professor** | Daniel Di Domenico |
+| ⏱️ **Carga horária** | 80 horas aula |
+| 📅 **Semestre** | 2025/2 — 2º Período |
+
+---
+
+<p align="center">
+  <sub>© 2025 Instituto Federal do Paraná - Campus Foz do Iguaçu</sub>
+</p>
+
