@@ -1,3 +1,10 @@
+<?php
+include_once("Connection.php");
+
+$conn = Connection::getConnection();
+print_r($conn);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
