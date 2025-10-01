@@ -1,8 +1,16 @@
 <?php
 include_once("Connection.php");
 
+//Obtendo a conexão com o banco
 $conn = Connection::getConnection();
-print_r($conn);
+//print_r($conn);
+
+$sql = "SELECT * FROM times";
+$stm = $conn->prepare($sql);
+$stm->execute();
+
+$dados = $stm->fetchAll();
+//echo "<pre>" . print_r($dados, true) . "</pre>";
 
 ?>
 <!DOCTYPE html>
@@ -23,7 +31,19 @@ print_r($conn);
             <th></th>
         </tr>
 
-        
+        <?php foreach($dados as $t): ?>
+            <tr>
+                <td><?= $t['id'] ?></td>
+                <td><?= $t['nome'] ?></td>
+                <td><?= $t['cidade'] ?></td>
+                <td>
+                    <a href="time_excluir.php?id=<?= $t['id'] ?>"
+                        onclick="return confirm('Confirma a exclusão?');">
+                        Excluir
+                    </a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
     </table>
 </body>
 </html>

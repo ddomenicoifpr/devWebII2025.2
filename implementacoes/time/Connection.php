@@ -24,8 +24,8 @@ class Connection
                 
                 self::$conn = new PDO(
                     "mysql:host=mysql-server;dbname=db_times",
-                    "root",
-                    "root",
+                    "root", //Usuário
+                    "root", //Senha
                     $opcoes
                 );
             } catch (PDOException $e) {
