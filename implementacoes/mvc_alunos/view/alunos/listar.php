@@ -37,8 +37,17 @@ include_once(__DIR__ . "/../include/header.php");
             <td><?= $a->getIdade() ?></td>
             <td><?= $a->getEstrangeiroDesc() ?></td>
             <td><?= $a->getCurso()->getNomeTurno() ?></td>
-            <td></td>
-            <td></td>
+            <td>
+                <a href="editar.php?id=<?= $a->getId() ?>">
+                    <img src="../../img/btn_editar.png">
+                </a>
+            </td>
+            <td>
+                <a href="excluir.php?id=<?= $a->getId() ?>"
+                    onclick="return confirm('Confirma a exclusão?')">
+                    <img src="../../img/btn_excluir.png">
+                </a>
+            </td>
         </tr>
     <?php endforeach; ?>
    

@@ -23,6 +23,33 @@ class AlunoDao {
         return $this->map($result);
     }
 
+    public function insert(Aluno $aluno) {
+        try {
+            $sql = "INSERT INTO alunos
+                    (nome, idade, estrangeiro, id_curso)
+                    VALUES (?, ?, ?, ?)";
+
+            $stm = $this->conn->prepare($sql);
+            $stm->execute(array($aluno->getNome(),
+                                $aluno->getIdade(),
+                                $aluno->getEstrangeiro(),
+                                $aluno->getCurso()->getId()));
+        } catch(PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function delete(int $id) {
+        try {
+            $sql = "DELETE FROM alunos WHERE id = ?";
+
+            $stm = $this->conn->prepare($sql);
+            $stm->execute(array($id));
+        } catch(PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
     //Conversão de array assoc. para objeto
     private function map(array $result) {
         $alunos = array();

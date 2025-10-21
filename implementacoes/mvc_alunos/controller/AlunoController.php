@@ -14,5 +14,14 @@ class AlunoController {
         return $this->alunoDao->list();
     }
 
+    public function inserir(Aluno $aluno) {
+        $this->alunoDao->insert($aluno);
+    }
+
+    public function excluir(int $id) {
+        $this->alunoDao->delete($id);
+    }
+
+
 
 }
