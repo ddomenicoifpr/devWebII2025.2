@@ -39,6 +39,23 @@ class AlunoDao {
         }
     }
 
+    public function update(Aluno $aluno) {
+        try {
+            $sql = "UPDATE alunos 
+                    SET nome = ?, idade = ?, 
+                        estrangeiro = ?, id_curso = ? 
+                    WHERE id = ?";
+            $stm = $this->conn->prepare($sql);
+            $stm->execute(array($aluno->getNome(), 
+                                $aluno->getIdade(),
+                                $aluno->getEstrangeiro(), 
+                                $aluno->getCurso()->getId(),
+                                $aluno->getId()));
+        } catch(PDOException $e) {
+            die($e->getMessage());
+        }                   
+    }
+
     public function delete(int $id) {
         try {
             $sql = "DELETE FROM alunos WHERE id = ?";
