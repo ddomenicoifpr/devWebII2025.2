@@ -23,6 +23,24 @@ class AlunoDao {
         return $this->map($result);
     }
 
+    public function findById(int $id) {
+        $sql = "SELECT a.*, c.nome nome_curso, c.turno turno_curso
+                FROM alunos a
+                JOIN cursos c ON (c.id = a.id_curso)
+                WHERE a.id = ?";
+
+        $stm = $this->conn->prepare($sql);
+        $stm->execute([$id]);
+        $result = $stm->fetchAll();
+
+        $alunos = $this->map($result);
+
+        if(count($alunos) == 1)
+            return $alunos[0];
+
+        return NULL;
+    }
+
     public function insert(Aluno $aluno) {
         try {
             $sql = "INSERT INTO alunos
