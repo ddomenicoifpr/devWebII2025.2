@@ -11,5 +11,5 @@ define("DB_USER", "root");
 define("DB_PASSWORD", "root");
 
 //Configuar a URL do sistema
-define("URL_BASE", "/mvc_alunos");
+define("URL_BASE", "/mvc_alunos_login");
 

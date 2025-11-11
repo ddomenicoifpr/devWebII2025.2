@@ -1,4 +1,6 @@
 <?php
+include_once(__DIR__ . "/view/login/verifica.php");
+
 include_once(__DIR__ . "/view/include/header.php");
 include_once(__DIR__ . "/view/include/menu.php");
 ?>

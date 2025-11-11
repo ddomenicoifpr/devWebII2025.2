@@ -1,5 +1,7 @@
 <?php
 
+include_once(__DIR__ . "/../login/verifica.php");
+
 include_once(__DIR__ . "/../../controller/AlunoController.php");
 
 //1- Capturar o ID pela superglobal $_GET

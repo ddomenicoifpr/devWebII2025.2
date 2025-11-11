@@ -1,6 +1,10 @@
 <?php
 
 include_once(__DIR__ . "/../../util/config.php");
+include_once(__DIR__ . "/../../controller/UsuarioController.php");
+
+$usuarioCont = new UsuarioController();
+$nomeUsuario = $usuarioCont->getNomeUsuarioLogado();
 
 ?>
 
@@ -29,8 +33,14 @@ include_once(__DIR__ . "/../../util/config.php");
                     <a class="dropdown-item" href="#">Turmas</a>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Sobre</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#"
+                    id="navDropDown" data-bs-toggle="dropdown"><?= $nomeUsuario ?></a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" 
+                        href="<?= URL_BASE ?>/view/login/logoff.php">
+                        Sair</a>
+                </div>
             </li>
         </ul>
     </div>

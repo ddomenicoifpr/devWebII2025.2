@@ -19,7 +19,10 @@ if(isset($_POST['login'])) {
     $erros = $usuCont->logar($login, $senha);
 
     //Se tiver erros, mantém na mesma página e exibe-os
-    $msgErro = implode("<br>", $erros);
+    if($erros)
+        $msgErro = implode("<br>", $erros);
+    else
+        header("location: " . URL_BASE);
 }
 
 include_once(__DIR__ . "/../include/header.php");
