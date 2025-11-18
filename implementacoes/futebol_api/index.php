@@ -5,6 +5,8 @@ use Slim\Factory\AppFactory;
 
 use Slim\Exception\HttpNotFoundException;
 
+use App\Controller\ClubeController;
+
 require_once(__DIR__ . '/vendor/autoload.php');
 
 $app = AppFactory::create();
@@ -20,6 +22,29 @@ $app->get('/', function (Request $request, Response $response, $args) {
     $response->getBody()->write("Funcionou!");
     return $response;
 });
+
+/* /olaMundo?nome=Fulano  */
+$app->get('/olaMundo', function (Request $request, Response $response, $args) {
+    $parametros = $request->getQueryParams();
+
+    $nome = "Sem nome";
+    if(isset($parametros['nome']))
+        $nome = $parametros['nome'];
+    
+    $response->getBody()->write("Seja bem vindo " . $nome . "!");
+    return $response;
+});
+
+$app->get('/olaMundo2/{nome}', function (Request $request, Response $response, $args) {
+    $nome = $args["nome"];
+    
+    $response->getBody()->write("Seja bem vindo " . $nome . "!");
+    return $response;
+});
+
+//Clubes
+$app->get("/clubes", ClubeController::class . ":listar");
+$app->get("/clubes/{id}", ClubeController::class . ":buscarPorId");
 
 //Tratamento para rota não encontrada
 $app->map(['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], '/{routes:.+}', function ($request, $response) {
