@@ -45,6 +45,9 @@ $app->get('/olaMundo2/{nome}', function (Request $request, Response $response, $
 //Clubes
 $app->get("/clubes", ClubeController::class . ":listar");
 $app->get("/clubes/{id}", ClubeController::class . ":buscarPorId");
+$app->post("/clubes", ClubeController::class . ":inserir");
+$app->delete("/clubes/{id}", ClubeController::class . ":excluir");
+$app->put("/clubes/{id}", ClubeController::class . ":atualizar");
 
 //Tratamento para rota não encontrada
 $app->map(['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], '/{routes:.+}', function ($request, $response) {
