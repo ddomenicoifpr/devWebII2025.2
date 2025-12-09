@@ -28,15 +28,36 @@ const inpImagem = document.querySelector("#inpImagem");
  * 
  ****************************************************/
 
+//Carregar os clubes ao abrir página
+buscarClubesAwait();
+
 /* BUSCAR XMLHttpRequest */
 function buscarClubes() {
-   alert("Implementar buscarClubes()");
+   //Requisição para a futebol_api
+   var xhttp = new XMLHttpRequest();
+   xhttp.open("GET", URL_API);
+
+   xhttp.onload = function() {
+       //alert(xhttp.responseText);
+
+       var clubes = JSON.parse(xhttp.responseText);
+       listarClubesTabela(clubes);
+   } 
+
+   xhttp.send();
 }
 
 
 /* BUSCAR async await */
 async function buscarClubesAwait() {
-    alert("Implementar buscarClubesAwait()");  
+    const options = {
+        method: "GET"
+    };
+
+    var resp = await fetch(URL_API, options);
+    var clubes = await resp.json();
+
+    listarClubesTabela(clubes);
 }
 
 
@@ -82,7 +103,23 @@ function listarClubesTabela(clubes) {
 
 /* EXCLUIR */
 async function excluirClube(idClube) {
-    alert("Implementar excluirClube(idClube)");
+   //1- Requisição para a API
+   const opcoes = {
+        method: "DELETE"
+   }
+
+   var resp = await fetch(URL_API + "/" + idClube, opcoes);
+   
+   //2- Tratar as resposta
+   if(resp.status == 200) {
+        alert("Clube excluido com sucesso!");
+
+        buscarClubesAwait();
+    } else {
+        //Erro na exclusão
+        var jsonResp = await resp.text();
+        alert(jsonResp);
+    }
 }
 
 
@@ -93,6 +130,39 @@ async function inserirClube() {
     var cidade = inpCidade.value.trim();
     var imagem = inpImagem.value.trim();
 
-    alert("Implementar inserirClube()");    
+    //Gerar o JSON com os dados
+    const clube = {
+        "nome": nome,
+        "cidade": cidade,
+        "imagem": imagem     
+    };
+    const json = JSON.stringify(clube);
+    //alert(json);
+
+    //Chamada para a API a fim de inserir
+    const opcoes = {
+        method: "POST",
+        body: json,
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }
+
+    var resp = await fetch(URL_API, opcoes);
+    if(resp.status == 201) {
+        //Inserido com sucesso
+        inpNome.value = "";
+        inpCidade.value = "";
+        inpImagem.value = "";
+
+        alert("Clube inserido com sucesso!");
+
+        buscarClubesAwait();
+    } else {
+        //Erro na insersão
+        var jsonResp = await resp.text();
+        alert(jsonResp);
+    }
+        
 }
 
